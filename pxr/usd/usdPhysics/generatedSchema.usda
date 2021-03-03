@@ -14,17 +14,17 @@ class PhysicsScene "PhysicsScene" (
     doc = "Prim to define general physics simulation properties."
 )
 {
-    vector3f physics:gravityDirection = (0, 0, 0) (
+    vector3d  physics:gravityDirection = (0, 0, 0) (
         displayName = "Gravity Direction"
         doc = """Gravity direction vector in simulation word space. Will be
-        normalized before use. A zero vector is a request to use the negative 
+        normalized before use. A zero vector is a request to use the negative
         upAxis. Unitless."""
     )
-    float physics:gravityMagnitude = -inf (
+    double physics:gravityMagnitude = -inf (
         displayName = "Gravity Magnitude"
-        doc = """Gravity acceleration magnitude in simulation word space. 
-        A negative value is a request to use a value equivalent to earth 
-        gravity regardless of the metersPerUnit scaling used by this scene. 
+        doc = """Gravity acceleration magnitude in simulation word space.
+        A negative value is a request to use a value equivalent to earth
+        gravity regardless of the metersPerUnit scaling used by this scene.
         Units: distance/time/time."""
     )
 }
@@ -32,19 +32,19 @@ class PhysicsScene "PhysicsScene" (
 class "PhysicsRigidBodyAPI" (
     doc = """Applies physics body attributes to any UsdGeomXformable prim and
     marks that prim to be driven by a simulation. If a simulation is running
-    it will update this prim's pose. All prims in the hierarchy below this 
+    it will update this prim's pose. All prims in the hierarchy below this
     prim should move accordingly."""
 )
 {
-    vector3f physics:angularVelocity = (0, 0, 0) (
+    vector3d  physics:angularVelocity = (0, 0, 0) (
         displayName = "Angular Velocity"
-        doc = """Angular velocity in the same space as the node's xform. 
+        doc = """Angular velocity in the same space as the node's xform.
         Units: degrees/time."""
     )
     bool physics:kinematicEnabled = 0 (
         displayName = "Kinematic Enabled"
-        doc = """Determines whether the body is kinematic or not. A kinematic 
-        body is a body that is moved through animated poses or through 
+        doc = """Determines whether the body is kinematic or not. A kinematic
+        body is a body that is moved through animated poses or through
         user defined poses. The simulation still derives velocities for the
         kinematic body based on the external motion."""
     )
@@ -54,76 +54,76 @@ class "PhysicsRigidBodyAPI" (
     )
     rel physics:simulationOwner (
         displayName = "Simulation Owner"
-        doc = """Single PhysicsScene that will simulate this body.  By 
-        default this is the first PhysicsScene found in the stage using 
+        doc = """Single PhysicsScene that will simulate this body.  By
+        default this is the first PhysicsScene found in the stage using
         UsdStage::Traverse()."""
     )
     uniform bool physics:startsAsleep = 0 (
         displayName = "Starts as Asleep"
         doc = "Determines if the body is asleep when the simulation starts."
     )
-    vector3f physics:velocity = (0, 0, 0) (
+    vector3d physics:velocity = (0, 0, 0) (
         displayName = "Linear Velocity"
-        doc = """Linear velocity in the same space as the node's xform. 
+        doc = """Linear velocity in the same space as the node's xform.
         Units: distance/time."""
     )
 }
 
 class "PhysicsMassAPI" (
-    doc = """Defines explicit mass properties (mass, density, inertia etc.).        
+    doc = """Defines explicit mass properties (mass, density, inertia etc.).
     MassAPI can be applied to any object that has a PhysicsCollisionAPI or
     a PhysicsRigidBodyAPI."""
 )
 {
-    point3f physics:centerOfMass = (0, 0, 0) (
+    point3d physics:centerOfMass = (0, 0, 0) (
         displayName = "Center of Mass"
         doc = "Center of mass in the prim's local space. Units: distance."
     )
-    float physics:density = 0 (
+    double physics:density = 0 (
         displayName = "Density"
         doc = """If non-zero, specifies the density of the object.
-        In the context of rigid body physics, density indirectly results in 
-        setting mass via (mass = density x volume of the object). How the 
+        In the context of rigid body physics, density indirectly results in
+        setting mass via (mass = density x volume of the object). How the
         volume is computed is up to implementation of the physics system.
         It is generally computed from the collision approximation rather than
-        the graphical mesh. In the case where both density and mass are 
-        specified for the same object, mass has precedence over density. 
-        Unlike mass, child's prim's density overrides parent prim's density 
+        the graphical mesh. In the case where both density and mass are
+        specified for the same object, mass has precedence over density.
+        Unlike mass, child's prim's density overrides parent prim's density
         as it is accumulative. Note that density of a collisionAPI can be also
         alternatively set through a pPhysicsMaterialAPI rel. The material density
         has the weakest precedence in density definition. Note if density is
         0.0 it is ignored. Units: mass/distance/distance/distance."""
     )
-    float3 physics:diagonalInertia = (0, 0, 0) (
+    double3 physics:diagonalInertia = (0, 0, 0) (
         displayName = "Diagonal Inertia"
-        doc = """If non-zero, specifies diagonalized inertia tensor along the 
-        principal axes. Note if diagonalInertial is (0.0, 0.0, 0.0) it is 
+        doc = """If non-zero, specifies diagonalized inertia tensor along the
+        principal axes. Note if diagonalInertial is (0.0, 0.0, 0.0) it is
         ignored. Units: mass*distance*distance."""
     )
-    float physics:mass = 0 (
+    double physics:mass = 0 (
         displayName = "Mass"
         doc = """If non-zero, directly specifies the mass of the object.
         Note that any child prim can also have a mass when they apply massAPI.
         In this case, the precedence rule is 'parent mass overrides the
-        child's'. This may come as counter-intuitive, but mass is a computed 
-        quantity and in general not accumulative. For example, if a parent 
-        has mass of 10, and one of two children has mass of 20, allowing 
-        child's mass to override its parent results in a mass of -10 for the 
+        child's'. This may come as counter-intuitive, but mass is a computed
+        quantity and in general not accumulative. For example, if a parent
+        has mass of 10, and one of two children has mass of 20, allowing
+        child's mass to override its parent results in a mass of -10 for the
         other child. Note if mass is 0.0 it is ignored. Units: mass.
         """
     )
-    quatf physics:principalAxes = (1, 0, 0, 0) (
+    quatd physics:principalAxes = (1, 0, 0, 0) (
         displayName = "Principal Axes"
-        doc = """Orientation of the inertia tensor's principal axes in the 
+        doc = """Orientation of the inertia tensor's principal axes in the
         prim's local space."""
     )
 }
 
 class "PhysicsCollisionAPI" (
-    doc = """Applies collision attributes to a UsdGeomXformable prim. If a 
-    simulation is running this geometry is colliding with other geometries that 
-    do have CollisionAPI applied. If a prim in the parent hierarchy does have 
-    the PhysicsAPI applied, this collision is a part of that body. If there is 
+    doc = """Applies collision attributes to a UsdGeomXformable prim. If a
+    simulation is running this geometry is colliding with other geometries that
+    do have CollisionAPI applied. If a prim in the parent hierarchy does have
+    the PhysicsAPI applied, this collision is a part of that body. If there is
     no body in the parent hierarchy, this collision is considered to be a static
     collision."""
 )
@@ -134,7 +134,7 @@ class "PhysicsCollisionAPI" (
     )
     rel physics:simulationOwner (
         displayName = "Simulation Owner"
-        doc = """Single PhysicsScene that will simulate this collider. 
+        doc = """Single PhysicsScene that will simulate this collider.
         By default this object belongs to the first PhysicsScene.
         Note that if a PhysicsAPI in the hierarchy above has a different
         simulationOwner then it has a precedence over this relationship."""
@@ -150,43 +150,43 @@ class "PhysicsMeshCollisionAPI" (
         allowedTokens = ["none", "convexDecomposition", "convexHull", "boundingSphere", "boundingCube", "meshSimplification"]
         displayName = "Approximation"
         doc = """Determines the mesh's collision approximation:
-\t\"none\" - The mesh geometry is used directly as a collider without any 
+\t\"none\" - The mesh geometry is used directly as a collider without any
     approximation.
-\t\"convexDecomposition\" - A convex mesh decomposition is performed. This 
+\t\"convexDecomposition\" - A convex mesh decomposition is performed. This
     results in a set of convex mesh colliders.
-\t\"convexHull\" - A convex hull of the mesh is generated and used as the 
+\t\"convexHull\" - A convex hull of the mesh is generated and used as the
     collider.
-\t\"boundingSphere\" - A bounding sphere is computed around the mesh and used 
+\t\"boundingSphere\" - A bounding sphere is computed around the mesh and used
     as a collider.
-\t\"boundingCube\" - An optimally fitting box collider is computed around the 
+\t\"boundingCube\" - An optimally fitting box collider is computed around the
     mesh.
-\t\"meshSimplification\" - A mesh simplification step is performed, resulting 
+\t\"meshSimplification\" - A mesh simplification step is performed, resulting
     in a simplified triangle mesh collider."""
     )
 }
 
 class "PhysicsMaterialAPI" (
-    doc = """ Defines simulation material properties. All collisions that 
-    have a material binding with purpose physics to this material 
+    doc = """ Defines simulation material properties. All collisions that
+    have a material binding with purpose physics to this material
     will have their collision response defined through this material."""
 )
 {
-    float physics:density = 0 (
+    double physics:density = 0 (
         displayName = "Density"
         doc = """If non-zero, defines the density of the material. This can be
         used for body mass computation, see PhysicsMassAPI.
-        Note that if the density is 0.0 it is ignored. 
+        Note that if the density is 0.0 it is ignored.
         Units: mass/distance/distance/distance."""
     )
-    float physics:dynamicFriction = 0 (
+    double physics:dynamicFriction = 0 (
         displayName = "Dynamic Friction"
         doc = "Dynamic friction coefficient. Unitless."
     )
-    float physics:restitution = 0 (
+    double physics:restitution = 0 (
         displayName = "Restitution"
         doc = "Restitution coefficient. Unitless."
     )
-    float physics:staticFriction = 0 (
+    double physics:staticFriction = 0 (
         displayName = "Static Friction"
         doc = "Static friction coefficient. Unitless."
     )
@@ -194,11 +194,11 @@ class "PhysicsMaterialAPI" (
 
 class PhysicsCollisionGroup "PhysicsCollisionGroup" (
     apiSchemas = ["CollectionAPI:colliders"]
-    doc = """Defines a collision group for coarse filtering. When a collision 
+    doc = """Defines a collision group for coarse filtering. When a collision
     occurs between two objects that have a PhysicsCollisionGroup assigned,
-    they will collide with each other unless this PhysicsCollisionGroup pair 
+    they will collide with each other unless this PhysicsCollisionGroup pair
     is filtered. See filteredGroups attribute.
-    
+
     The user should apply a CollectionAPI:colliders to an instance of this
     class which maintains a list of PhysicsCollisionAPI rel-s that defines the
     members of this Collisiongroup.
@@ -207,7 +207,7 @@ class PhysicsCollisionGroup "PhysicsCollisionGroup" (
 {
     rel physics:filteredGroups (
         displayName = "Filtered Groups"
-        doc = """References a list of PhysicsCollisionGroups with which 
+        doc = """References a list of PhysicsCollisionGroups with which
         collisions should be ignored."""
     )
 }
@@ -216,8 +216,8 @@ class "PhysicsFilteredPairsAPI" (
     doc = '''API to describe fine-grained filtering. If a collision between
     two objects occurs, this pair might be filtered if the pair is defined
     through this API. This API can be applied either to a body or collision
-    or even articulation. The "filteredPairs" defines what objects it should 
-    not collide against. Note that FilteredPairsAPI filtering has precedence 
+    or even articulation. The "filteredPairs" defines what objects it should
+    not collide against. Note that FilteredPairsAPI filtering has precedence
     over CollisionGroup filtering.'''
 )
 {
@@ -228,9 +228,9 @@ class "PhysicsFilteredPairsAPI" (
 }
 
 class PhysicsJoint "PhysicsJoint" (
-    doc = """A joint constrains the movement of rigid bodies. Joint can be 
+    doc = """A joint constrains the movement of rigid bodies. Joint can be
     created between two rigid bodies or between one rigid body and world.
-    By default joint primitive defines a D6 joint where all degrees of 
+    By default joint primitive defines a D6 joint where all degrees of
     freedom are free. Three linear and three angular degrees of freedom.
     Note that default behavior is to disable collision between jointed bodies.
     """
@@ -238,24 +238,24 @@ class PhysicsJoint "PhysicsJoint" (
 {
     rel physics:body0 (
         displayName = "Body 0"
-        doc = """Relationship to first rigid body (or empty string if to 
+        doc = """Relationship to first rigid body (or empty string if to
         world)."""
     )
     rel physics:body1 (
         displayName = "Body 1"
-        doc = """Relationship to second rigid body (or empty string if to 
+        doc = """Relationship to second rigid body (or empty string if to
         world)."""
     )
-    float physics:breakForce = inf (
+    double physics:breakForce = inf (
         displayName = "Break Force"
         doc = """Joint break force. If set, joint is to break when this force
-        limit is reached. (Used for linear dofs.) 
+        limit is reached. (Used for linear dofs.)
         Units: mass * distance / time / time"""
     )
-    float physics:breakTorque = inf (
+    double physics:breakTorque = inf (
         displayName = "Break Torque"
         doc = """Joint break torque. If set, joint is to break when this torque
-        limit is reached. (Used for angular dofs.) 
+        limit is reached. (Used for angular dofs.)
         Units: mass * distance * distance / time / time"""
     )
     bool physics:collisionEnabled = 0 (
@@ -270,19 +270,19 @@ class PhysicsJoint "PhysicsJoint" (
         displayName = "Joint Enabled"
         doc = "Determines if the joint is enabled."
     )
-    point3f physics:localPos0 = (0, 0, 0) (
+    point3d physics:localPos0 = (0, 0, 0) (
         displayName = "Local Position 0"
         doc = "Relative position of the joint frame to body0's frame."
     )
-    point3f physics:localPos1 = (0, 0, 0) (
+    point3d physics:localPos1 = (0, 0, 0) (
         displayName = "Local Position 1"
         doc = "Relative position of the joint frame to body1's frame."
     )
-    quatf physics:localRot0 = (1, 0, 0, 0) (
+    quatd physics:localRot0 = (1, 0, 0, 0) (
         displayName = "Local Rotation 0"
         doc = "Relative orientation of the joint frame to body0's frame."
     )
-    quatf physics:localRot1 = (1, 0, 0, 0) (
+    quatd physics:localRot1 = (1, 0, 0, 0) (
         displayName = "Local Rotation 1"
         doc = "Relative orientation of the joint frame to body1's frame."
     )
@@ -291,17 +291,17 @@ class PhysicsJoint "PhysicsJoint" (
         prim whose purpose is "render" to its (single target)
         purpose="proxy" prim.  This is entirely optional, but can be
         useful in several scenarios:
-        
+
         - In a pipeline that does pruning (for complexity management)
         by deactivating prims composed from asset references, when we
         deactivate a purpose="render" prim, we will be able to discover
         and additionally deactivate its associated purpose="proxy" prim,
         so that preview renders reflect the pruning accurately.
-        
+
         - DCC importers may be able to make more aggressive optimizations
         for interactive processing and display if they can discover the proxy
         for a given render prim.
-        
+
         - With a little more work, a Hydra-based application will be able
         to map a picked proxy prim back to its render geometry for selection.
 
@@ -310,20 +310,20 @@ class PhysicsJoint "PhysicsJoint" (
     )
     uniform token purpose = "default" (
         allowedTokens = ["default", "render", "proxy", "guide"]
-        doc = """Purpose is a classification of geometry into categories that 
-        can each be independently included or excluded from traversals of prims 
+        doc = """Purpose is a classification of geometry into categories that
+        can each be independently included or excluded from traversals of prims
         on a stage, such as rendering or bounding-box computation traversals.
 
-        See for more detail about how 
+        See for more detail about how
         purpose is computed and used."""
     )
     token visibility = "inherited" (
         allowedTokens = ["inherited", "invisible"]
-        doc = '''Visibility is meant to be the simplest form of "pruning" 
-        visibility that is supported by most DCC apps.  Visibility is 
-        animatable, allowing a sub-tree of geometry to be present for some 
-        segment of a shot, and absent from others; unlike the action of 
-        deactivating geometry prims, invisible geometry is still 
+        doc = '''Visibility is meant to be the simplest form of "pruning"
+        visibility that is supported by most DCC apps.  Visibility is
+        animatable, allowing a sub-tree of geometry to be present for some
+        segment of a shot, and absent from others; unlike the action of
+        deactivating geometry prims, invisible geometry is still
         available for inspection, for positioning, for defining volumes, etc.'''
     )
 }
@@ -340,24 +340,24 @@ class PhysicsRevoluteJoint "PhysicsRevoluteJoint" (
     )
     rel physics:body0 (
         displayName = "Body 0"
-        doc = """Relationship to first rigid body (or empty string if to 
+        doc = """Relationship to first rigid body (or empty string if to
         world)."""
     )
     rel physics:body1 (
         displayName = "Body 1"
-        doc = """Relationship to second rigid body (or empty string if to 
+        doc = """Relationship to second rigid body (or empty string if to
         world)."""
     )
-    float physics:breakForce = inf (
+    double physics:breakForce = inf (
         displayName = "Break Force"
         doc = """Joint break force. If set, joint is to break when this force
-        limit is reached. (Used for linear dofs.) 
+        limit is reached. (Used for linear dofs.)
         Units: mass * distance / time / time"""
     )
-    float physics:breakTorque = inf (
+    double physics:breakTorque = inf (
         displayName = "Break Torque"
         doc = """Joint break torque. If set, joint is to break when this torque
-        limit is reached. (Used for angular dofs.) 
+        limit is reached. (Used for angular dofs.)
         Units: mass * distance * distance / time / time"""
     )
     bool physics:collisionEnabled = 0 (
@@ -372,30 +372,30 @@ class PhysicsRevoluteJoint "PhysicsRevoluteJoint" (
         displayName = "Joint Enabled"
         doc = "Determines if the joint is enabled."
     )
-    point3f physics:localPos0 = (0, 0, 0) (
+    point3d physics:localPos0 = (0, 0, 0) (
         displayName = "Local Position 0"
         doc = "Relative position of the joint frame to body0's frame."
     )
-    point3f physics:localPos1 = (0, 0, 0) (
+    point3d physics:localPos1 = (0, 0, 0) (
         displayName = "Local Position 1"
         doc = "Relative position of the joint frame to body1's frame."
     )
-    quatf physics:localRot0 = (1, 0, 0, 0) (
+    quatd physics:localRot0 = (1, 0, 0, 0) (
         displayName = "Local Rotation 0"
         doc = "Relative orientation of the joint frame to body0's frame."
     )
-    quatf physics:localRot1 = (1, 0, 0, 0) (
+    quatd physics:localRot1 = (1, 0, 0, 0) (
         displayName = "Local Rotation 1"
         doc = "Relative orientation of the joint frame to body1's frame."
     )
-    float physics:lowerLimit = -inf (
+    double physics:lowerLimit = -inf (
         displayName = "Lower Limit"
-        doc = """Lower limit.  Units: degrees. -inf means not limited in 
+        doc = """Lower limit.  Units: degrees. -inf means not limited in
         negative direction."""
     )
-    float physics:upperLimit = inf (
+    double physics:upperLimit = inf (
         displayName = "Upper Limit"
-        doc = """Upper limit.  Units: degrees. inf means not limited in 
+        doc = """Upper limit.  Units: degrees. inf means not limited in
         positive direction."""
     )
     rel proxyPrim (
@@ -403,17 +403,17 @@ class PhysicsRevoluteJoint "PhysicsRevoluteJoint" (
         prim whose purpose is "render" to its (single target)
         purpose="proxy" prim.  This is entirely optional, but can be
         useful in several scenarios:
-        
+
         - In a pipeline that does pruning (for complexity management)
         by deactivating prims composed from asset references, when we
         deactivate a purpose="render" prim, we will be able to discover
         and additionally deactivate its associated purpose="proxy" prim,
         so that preview renders reflect the pruning accurately.
-        
+
         - DCC importers may be able to make more aggressive optimizations
         for interactive processing and display if they can discover the proxy
         for a given render prim.
-        
+
         - With a little more work, a Hydra-based application will be able
         to map a picked proxy prim back to its render geometry for selection.
 
@@ -422,26 +422,26 @@ class PhysicsRevoluteJoint "PhysicsRevoluteJoint" (
     )
     uniform token purpose = "default" (
         allowedTokens = ["default", "render", "proxy", "guide"]
-        doc = """Purpose is a classification of geometry into categories that 
-        can each be independently included or excluded from traversals of prims 
+        doc = """Purpose is a classification of geometry into categories that
+        can each be independently included or excluded from traversals of prims
         on a stage, such as rendering or bounding-box computation traversals.
 
-        See for more detail about how 
+        See for more detail about how
         purpose is computed and used."""
     )
     token visibility = "inherited" (
         allowedTokens = ["inherited", "invisible"]
-        doc = '''Visibility is meant to be the simplest form of "pruning" 
-        visibility that is supported by most DCC apps.  Visibility is 
-        animatable, allowing a sub-tree of geometry to be present for some 
-        segment of a shot, and absent from others; unlike the action of 
-        deactivating geometry prims, invisible geometry is still 
+        doc = '''Visibility is meant to be the simplest form of "pruning"
+        visibility that is supported by most DCC apps.  Visibility is
+        animatable, allowing a sub-tree of geometry to be present for some
+        segment of a shot, and absent from others; unlike the action of
+        deactivating geometry prims, invisible geometry is still
         available for inspection, for positioning, for defining volumes, etc.'''
     )
 }
 
 class PhysicsPrismaticJoint "PhysicsPrismaticJoint" (
-    doc = """Predefined prismatic joint type (translation along prismatic 
+    doc = """Predefined prismatic joint type (translation along prismatic
     joint axis is permitted.)"""
 )
 {
@@ -452,24 +452,24 @@ class PhysicsPrismaticJoint "PhysicsPrismaticJoint" (
     )
     rel physics:body0 (
         displayName = "Body 0"
-        doc = """Relationship to first rigid body (or empty string if to 
+        doc = """Relationship to first rigid body (or empty string if to
         world)."""
     )
     rel physics:body1 (
         displayName = "Body 1"
-        doc = """Relationship to second rigid body (or empty string if to 
+        doc = """Relationship to second rigid body (or empty string if to
         world)."""
     )
-    float physics:breakForce = inf (
+    double physics:breakForce = inf (
         displayName = "Break Force"
         doc = """Joint break force. If set, joint is to break when this force
-        limit is reached. (Used for linear dofs.) 
+        limit is reached. (Used for linear dofs.)
         Units: mass * distance / time / time"""
     )
-    float physics:breakTorque = inf (
+    double physics:breakTorque = inf (
         displayName = "Break Torque"
         doc = """Joint break torque. If set, joint is to break when this torque
-        limit is reached. (Used for angular dofs.) 
+        limit is reached. (Used for angular dofs.)
         Units: mass * distance * distance / time / time"""
     )
     bool physics:collisionEnabled = 0 (
@@ -484,30 +484,30 @@ class PhysicsPrismaticJoint "PhysicsPrismaticJoint" (
         displayName = "Joint Enabled"
         doc = "Determines if the joint is enabled."
     )
-    point3f physics:localPos0 = (0, 0, 0) (
+    point3d physics:localPos0 = (0, 0, 0) (
         displayName = "Local Position 0"
         doc = "Relative position of the joint frame to body0's frame."
     )
-    point3f physics:localPos1 = (0, 0, 0) (
+    point3d physics:localPos1 = (0, 0, 0) (
         displayName = "Local Position 1"
         doc = "Relative position of the joint frame to body1's frame."
     )
-    quatf physics:localRot0 = (1, 0, 0, 0) (
+    quatd physics:localRot0 = (1, 0, 0, 0) (
         displayName = "Local Rotation 0"
         doc = "Relative orientation of the joint frame to body0's frame."
     )
-    quatf physics:localRot1 = (1, 0, 0, 0) (
+    quatd physics:localRot1 = (1, 0, 0, 0) (
         displayName = "Local Rotation 1"
         doc = "Relative orientation of the joint frame to body1's frame."
     )
-    float physics:lowerLimit = -inf (
+    double physics:lowerLimit = -inf (
         displayName = "Lower Limit"
-        doc = """Lower limit. Units: distance. -inf means not limited in 
+        doc = """Lower limit. Units: distance. -inf means not limited in
         negative direction."""
     )
-    float physics:upperLimit = inf (
+    double physics:upperLimit = inf (
         displayName = "Upper Limit"
-        doc = """Upper limit. Units: distance. inf means not limited in 
+        doc = """Upper limit. Units: distance. inf means not limited in
         positive direction."""
     )
     rel proxyPrim (
@@ -515,17 +515,17 @@ class PhysicsPrismaticJoint "PhysicsPrismaticJoint" (
         prim whose purpose is "render" to its (single target)
         purpose="proxy" prim.  This is entirely optional, but can be
         useful in several scenarios:
-        
+
         - In a pipeline that does pruning (for complexity management)
         by deactivating prims composed from asset references, when we
         deactivate a purpose="render" prim, we will be able to discover
         and additionally deactivate its associated purpose="proxy" prim,
         so that preview renders reflect the pruning accurately.
-        
+
         - DCC importers may be able to make more aggressive optimizations
         for interactive processing and display if they can discover the proxy
         for a given render prim.
-        
+
         - With a little more work, a Hydra-based application will be able
         to map a picked proxy prim back to its render geometry for selection.
 
@@ -534,28 +534,28 @@ class PhysicsPrismaticJoint "PhysicsPrismaticJoint" (
     )
     uniform token purpose = "default" (
         allowedTokens = ["default", "render", "proxy", "guide"]
-        doc = """Purpose is a classification of geometry into categories that 
-        can each be independently included or excluded from traversals of prims 
+        doc = """Purpose is a classification of geometry into categories that
+        can each be independently included or excluded from traversals of prims
         on a stage, such as rendering or bounding-box computation traversals.
 
-        See for more detail about how 
+        See for more detail about how
         purpose is computed and used."""
     )
     token visibility = "inherited" (
         allowedTokens = ["inherited", "invisible"]
-        doc = '''Visibility is meant to be the simplest form of "pruning" 
-        visibility that is supported by most DCC apps.  Visibility is 
-        animatable, allowing a sub-tree of geometry to be present for some 
-        segment of a shot, and absent from others; unlike the action of 
-        deactivating geometry prims, invisible geometry is still 
+        doc = '''Visibility is meant to be the simplest form of "pruning"
+        visibility that is supported by most DCC apps.  Visibility is
+        animatable, allowing a sub-tree of geometry to be present for some
+        segment of a shot, and absent from others; unlike the action of
+        deactivating geometry prims, invisible geometry is still
         available for inspection, for positioning, for defining volumes, etc.'''
     )
 }
 
 class PhysicsSphericalJoint "PhysicsSphericalJoint" (
-    doc = """Predefined spherical joint type (Removes linear degrees of 
+    doc = """Predefined spherical joint type (Removes linear degrees of
     freedom, cone limit may restrict the motion in a given range.)  It allows
-    two limit values, which when equal create a circular, else an elliptic 
+    two limit values, which when equal create a circular, else an elliptic
     cone limit around the limit axis."""
 )
 {
@@ -566,40 +566,40 @@ class PhysicsSphericalJoint "PhysicsSphericalJoint" (
     )
     rel physics:body0 (
         displayName = "Body 0"
-        doc = """Relationship to first rigid body (or empty string if to 
+        doc = """Relationship to first rigid body (or empty string if to
         world)."""
     )
     rel physics:body1 (
         displayName = "Body 1"
-        doc = """Relationship to second rigid body (or empty string if to 
+        doc = """Relationship to second rigid body (or empty string if to
         world)."""
     )
-    float physics:breakForce = inf (
+    double physics:breakForce = inf (
         displayName = "Break Force"
         doc = """Joint break force. If set, joint is to break when this force
-        limit is reached. (Used for linear dofs.) 
+        limit is reached. (Used for linear dofs.)
         Units: mass * distance / time / time"""
     )
-    float physics:breakTorque = inf (
+    double physics:breakTorque = inf (
         displayName = "Break Torque"
         doc = """Joint break torque. If set, joint is to break when this torque
-        limit is reached. (Used for angular dofs.) 
+        limit is reached. (Used for angular dofs.)
         Units: mass * distance * distance / time / time"""
     )
     bool physics:collisionEnabled = 0 (
         displayName = "Collision Enabled"
         doc = "Determines if the jointed bodies should collide or not."
     )
-    float physics:coneAngle0Limit = -1 (
+    double physics:coneAngle0Limit = -1 (
         displayName = "Cone Angle0 Limit"
-        doc = """Cone limit from the primary joint axis in the local0 frame 
-        toward the next axis. (Next axis of X is Y, and of Z is X.)  A 
+        doc = """Cone limit from the primary joint axis in the local0 frame
+        toward the next axis. (Next axis of X is Y, and of Z is X.)  A
         negative value means not limited. Units: degrees."""
     )
-    float physics:coneAngle1Limit = -1 (
+    double physics:coneAngle1Limit = -1 (
         displayName = "Cone Angle1 Limit"
-        doc = """Cone limit from the primary joint axis in the local0 frame 
-        toward the second to next axis.  A negative value means not limited. 
+        doc = """Cone limit from the primary joint axis in the local0 frame
+        toward the second to next axis.  A negative value means not limited.
         Units: degrees."""
     )
     uniform bool physics:excludeFromArticulation = 0 (
@@ -610,19 +610,19 @@ class PhysicsSphericalJoint "PhysicsSphericalJoint" (
         displayName = "Joint Enabled"
         doc = "Determines if the joint is enabled."
     )
-    point3f physics:localPos0 = (0, 0, 0) (
+    point3d physics:localPos0 = (0, 0, 0) (
         displayName = "Local Position 0"
         doc = "Relative position of the joint frame to body0's frame."
     )
-    point3f physics:localPos1 = (0, 0, 0) (
+    point3d physics:localPos1 = (0, 0, 0) (
         displayName = "Local Position 1"
         doc = "Relative position of the joint frame to body1's frame."
     )
-    quatf physics:localRot0 = (1, 0, 0, 0) (
+    quatd physics:localRot0 = (1, 0, 0, 0) (
         displayName = "Local Rotation 0"
         doc = "Relative orientation of the joint frame to body0's frame."
     )
-    quatf physics:localRot1 = (1, 0, 0, 0) (
+    quatd physics:localRot1 = (1, 0, 0, 0) (
         displayName = "Local Rotation 1"
         doc = "Relative orientation of the joint frame to body1's frame."
     )
@@ -631,17 +631,17 @@ class PhysicsSphericalJoint "PhysicsSphericalJoint" (
         prim whose purpose is "render" to its (single target)
         purpose="proxy" prim.  This is entirely optional, but can be
         useful in several scenarios:
-        
+
         - In a pipeline that does pruning (for complexity management)
         by deactivating prims composed from asset references, when we
         deactivate a purpose="render" prim, we will be able to discover
         and additionally deactivate its associated purpose="proxy" prim,
         so that preview renders reflect the pruning accurately.
-        
+
         - DCC importers may be able to make more aggressive optimizations
         for interactive processing and display if they can discover the proxy
         for a given render prim.
-        
+
         - With a little more work, a Hydra-based application will be able
         to map a picked proxy prim back to its render geometry for selection.
 
@@ -650,20 +650,20 @@ class PhysicsSphericalJoint "PhysicsSphericalJoint" (
     )
     uniform token purpose = "default" (
         allowedTokens = ["default", "render", "proxy", "guide"]
-        doc = """Purpose is a classification of geometry into categories that 
-        can each be independently included or excluded from traversals of prims 
+        doc = """Purpose is a classification of geometry into categories that
+        can each be independently included or excluded from traversals of prims
         on a stage, such as rendering or bounding-box computation traversals.
 
-        See for more detail about how 
+        See for more detail about how
         purpose is computed and used."""
     )
     token visibility = "inherited" (
         allowedTokens = ["inherited", "invisible"]
-        doc = '''Visibility is meant to be the simplest form of "pruning" 
-        visibility that is supported by most DCC apps.  Visibility is 
-        animatable, allowing a sub-tree of geometry to be present for some 
-        segment of a shot, and absent from others; unlike the action of 
-        deactivating geometry prims, invisible geometry is still 
+        doc = '''Visibility is meant to be the simplest form of "pruning"
+        visibility that is supported by most DCC apps.  Visibility is
+        animatable, allowing a sub-tree of geometry to be present for some
+        segment of a shot, and absent from others; unlike the action of
+        deactivating geometry prims, invisible geometry is still
         available for inspection, for positioning, for defining volumes, etc.'''
     )
 }
@@ -675,24 +675,24 @@ class PhysicsDistanceJoint "PhysicsDistanceJoint" (
 {
     rel physics:body0 (
         displayName = "Body 0"
-        doc = """Relationship to first rigid body (or empty string if to 
+        doc = """Relationship to first rigid body (or empty string if to
         world)."""
     )
     rel physics:body1 (
         displayName = "Body 1"
-        doc = """Relationship to second rigid body (or empty string if to 
+        doc = """Relationship to second rigid body (or empty string if to
         world)."""
     )
-    float physics:breakForce = inf (
+    double physics:breakForce = inf (
         displayName = "Break Force"
         doc = """Joint break force. If set, joint is to break when this force
-        limit is reached. (Used for linear dofs.) 
+        limit is reached. (Used for linear dofs.)
         Units: mass * distance / time / time"""
     )
-    float physics:breakTorque = inf (
+    double physics:breakTorque = inf (
         displayName = "Break Torque"
         doc = """Joint break torque. If set, joint is to break when this torque
-        limit is reached. (Used for angular dofs.) 
+        limit is reached. (Used for angular dofs.)
         Units: mass * distance * distance / time / time"""
     )
     bool physics:collisionEnabled = 0 (
@@ -707,30 +707,30 @@ class PhysicsDistanceJoint "PhysicsDistanceJoint" (
         displayName = "Joint Enabled"
         doc = "Determines if the joint is enabled."
     )
-    point3f physics:localPos0 = (0, 0, 0) (
+    point3d physics:localPos0 = (0, 0, 0) (
         displayName = "Local Position 0"
         doc = "Relative position of the joint frame to body0's frame."
     )
-    point3f physics:localPos1 = (0, 0, 0) (
+    point3d physics:localPos1 = (0, 0, 0) (
         displayName = "Local Position 1"
         doc = "Relative position of the joint frame to body1's frame."
     )
-    quatf physics:localRot0 = (1, 0, 0, 0) (
+    quatd physics:localRot0 = (1, 0, 0, 0) (
         displayName = "Local Rotation 0"
         doc = "Relative orientation of the joint frame to body0's frame."
     )
-    quatf physics:localRot1 = (1, 0, 0, 0) (
+    quatd physics:localRot1 = (1, 0, 0, 0) (
         displayName = "Local Rotation 1"
         doc = "Relative orientation of the joint frame to body1's frame."
     )
-    float physics:maxDistance = -1 (
+    double physics:maxDistance = -1 (
         displayName = "Maximum Distance"
-        doc = """Maximum distance. If attribute is negative, the joint is not 
+        doc = """Maximum distance. If attribute is negative, the joint is not
         limited. Units: distance."""
     )
-    float physics:minDistance = -1 (
+    double physics:minDistance = -1 (
         displayName = "Minimum Distance"
-        doc = """Minimum distance. If attribute is negative, the joint is not 
+        doc = """Minimum distance. If attribute is negative, the joint is not
         limited. Units: distance."""
     )
     rel proxyPrim (
@@ -738,17 +738,17 @@ class PhysicsDistanceJoint "PhysicsDistanceJoint" (
         prim whose purpose is "render" to its (single target)
         purpose="proxy" prim.  This is entirely optional, but can be
         useful in several scenarios:
-        
+
         - In a pipeline that does pruning (for complexity management)
         by deactivating prims composed from asset references, when we
         deactivate a purpose="render" prim, we will be able to discover
         and additionally deactivate its associated purpose="proxy" prim,
         so that preview renders reflect the pruning accurately.
-        
+
         - DCC importers may be able to make more aggressive optimizations
         for interactive processing and display if they can discover the proxy
         for a given render prim.
-        
+
         - With a little more work, a Hydra-based application will be able
         to map a picked proxy prim back to its render geometry for selection.
 
@@ -757,49 +757,49 @@ class PhysicsDistanceJoint "PhysicsDistanceJoint" (
     )
     uniform token purpose = "default" (
         allowedTokens = ["default", "render", "proxy", "guide"]
-        doc = """Purpose is a classification of geometry into categories that 
-        can each be independently included or excluded from traversals of prims 
+        doc = """Purpose is a classification of geometry into categories that
+        can each be independently included or excluded from traversals of prims
         on a stage, such as rendering or bounding-box computation traversals.
 
-        See for more detail about how 
+        See for more detail about how
         purpose is computed and used."""
     )
     token visibility = "inherited" (
         allowedTokens = ["inherited", "invisible"]
-        doc = '''Visibility is meant to be the simplest form of "pruning" 
-        visibility that is supported by most DCC apps.  Visibility is 
-        animatable, allowing a sub-tree of geometry to be present for some 
-        segment of a shot, and absent from others; unlike the action of 
-        deactivating geometry prims, invisible geometry is still 
+        doc = '''Visibility is meant to be the simplest form of "pruning"
+        visibility that is supported by most DCC apps.  Visibility is
+        animatable, allowing a sub-tree of geometry to be present for some
+        segment of a shot, and absent from others; unlike the action of
+        deactivating geometry prims, invisible geometry is still
         available for inspection, for positioning, for defining volumes, etc.'''
     )
 }
 
 class PhysicsFixedJoint "PhysicsFixedJoint" (
-    doc = """Predefined fixed joint type (All degrees of freedom are 
+    doc = """Predefined fixed joint type (All degrees of freedom are
     removed.)"""
 )
 {
     rel physics:body0 (
         displayName = "Body 0"
-        doc = """Relationship to first rigid body (or empty string if to 
+        doc = """Relationship to first rigid body (or empty string if to
         world)."""
     )
     rel physics:body1 (
         displayName = "Body 1"
-        doc = """Relationship to second rigid body (or empty string if to 
+        doc = """Relationship to second rigid body (or empty string if to
         world)."""
     )
-    float physics:breakForce = inf (
+    double physics:breakForce = inf (
         displayName = "Break Force"
         doc = """Joint break force. If set, joint is to break when this force
-        limit is reached. (Used for linear dofs.) 
+        limit is reached. (Used for linear dofs.)
         Units: mass * distance / time / time"""
     )
-    float physics:breakTorque = inf (
+    double physics:breakTorque = inf (
         displayName = "Break Torque"
         doc = """Joint break torque. If set, joint is to break when this torque
-        limit is reached. (Used for angular dofs.) 
+        limit is reached. (Used for angular dofs.)
         Units: mass * distance * distance / time / time"""
     )
     bool physics:collisionEnabled = 0 (
@@ -814,19 +814,19 @@ class PhysicsFixedJoint "PhysicsFixedJoint" (
         displayName = "Joint Enabled"
         doc = "Determines if the joint is enabled."
     )
-    point3f physics:localPos0 = (0, 0, 0) (
+    point3d physics:localPos0 = (0, 0, 0) (
         displayName = "Local Position 0"
         doc = "Relative position of the joint frame to body0's frame."
     )
-    point3f physics:localPos1 = (0, 0, 0) (
+    point3d physics:localPos1 = (0, 0, 0) (
         displayName = "Local Position 1"
         doc = "Relative position of the joint frame to body1's frame."
     )
-    quatf physics:localRot0 = (1, 0, 0, 0) (
+    quatd physics:localRot0 = (1, 0, 0, 0) (
         displayName = "Local Rotation 0"
         doc = "Relative orientation of the joint frame to body0's frame."
     )
-    quatf physics:localRot1 = (1, 0, 0, 0) (
+    quatd physics:localRot1 = (1, 0, 0, 0) (
         displayName = "Local Rotation 1"
         doc = "Relative orientation of the joint frame to body1's frame."
     )
@@ -835,17 +835,17 @@ class PhysicsFixedJoint "PhysicsFixedJoint" (
         prim whose purpose is "render" to its (single target)
         purpose="proxy" prim.  This is entirely optional, but can be
         useful in several scenarios:
-        
+
         - In a pipeline that does pruning (for complexity management)
         by deactivating prims composed from asset references, when we
         deactivate a purpose="render" prim, we will be able to discover
         and additionally deactivate its associated purpose="proxy" prim,
         so that preview renders reflect the pruning accurately.
-        
+
         - DCC importers may be able to make more aggressive optimizations
         for interactive processing and display if they can discover the proxy
         for a given render prim.
-        
+
         - With a little more work, a Hydra-based application will be able
         to map a picked proxy prim back to its render geometry for selection.
 
@@ -854,40 +854,40 @@ class PhysicsFixedJoint "PhysicsFixedJoint" (
     )
     uniform token purpose = "default" (
         allowedTokens = ["default", "render", "proxy", "guide"]
-        doc = """Purpose is a classification of geometry into categories that 
-        can each be independently included or excluded from traversals of prims 
+        doc = """Purpose is a classification of geometry into categories that
+        can each be independently included or excluded from traversals of prims
         on a stage, such as rendering or bounding-box computation traversals.
 
-        See for more detail about how 
+        See for more detail about how
         purpose is computed and used."""
     )
     token visibility = "inherited" (
         allowedTokens = ["inherited", "invisible"]
-        doc = '''Visibility is meant to be the simplest form of "pruning" 
-        visibility that is supported by most DCC apps.  Visibility is 
-        animatable, allowing a sub-tree of geometry to be present for some 
-        segment of a shot, and absent from others; unlike the action of 
-        deactivating geometry prims, invisible geometry is still 
+        doc = '''Visibility is meant to be the simplest form of "pruning"
+        visibility that is supported by most DCC apps.  Visibility is
+        animatable, allowing a sub-tree of geometry to be present for some
+        segment of a shot, and absent from others; unlike the action of
+        deactivating geometry prims, invisible geometry is still
         available for inspection, for positioning, for defining volumes, etc.'''
     )
 }
 
 class "PhysicsLimitAPI" (
     doc = '''The PhysicsLimitAPI can be applied to a PhysicsJoint and will
-    restrict the movement along an axis. PhysicsLimitAPI is a multipleApply 
-    schema: The PhysicsJoint can be restricted along "transX", "transY", 
-    "transZ", "rotX", "rotY", "rotZ", "distance". Setting these as a 
+    restrict the movement along an axis. PhysicsLimitAPI is a multipleApply
+    schema: The PhysicsJoint can be restricted along "transX", "transY",
+    "transZ", "rotX", "rotY", "rotZ", "distance". Setting these as a
     multipleApply schema TfToken name will define the degree of freedom the
-    PhysicsLimitAPI is applied to. Note that if the low limit is higher than 
+    PhysicsLimitAPI is applied to. Note that if the low limit is higher than
     the high limit, motion along this axis is considered locked.'''
 )
 {
-    float physics:high = inf (
+    double physics:high = inf (
         displayName = "High Limit"
-        doc = """Upper limit.  Units: degrees or distance depending on trans or 
+        doc = """Upper limit.  Units: degrees or distance depending on trans or
         rot axis applied to. inf means not limited in positive direction."""
     )
-    float physics:low = -inf (
+    double physics:low = -inf (
         displayName = "Low Limit"
         doc = """Lower limit. Units: degrees or distance depending on trans or
         rot axis applied to. -inf means not limited in negative direction."""
@@ -896,57 +896,56 @@ class "PhysicsLimitAPI" (
 
 class "PhysicsDriveAPI" (
     doc = '''The PhysicsDriveAPI when applied to any joint primitive will drive
-    the joint towards a given target.  The PhysicsDriveAPI is a multipleApply 
-    schema: drive can be set per axis "transX", "transY", "transZ", "rotX", 
-    "rotY", "rotZ". Setting these as a multipleApply schema TfToken name will 
-    define the degree of freedom the DriveAPI is applied to. Each drive is an 
-    implicit force-limited damped spring: 
-    Force or acceleration = stiffness * (targetPosition - position) 
+    the joint towards a given target.  The PhysicsDriveAPI is a multipleApply
+    schema: drive can be set per axis "transX", "transY", "transZ", "rotX",
+    "rotY", "rotZ". Setting these as a multipleApply schema TfToken name will
+    define the degree of freedom the DriveAPI is applied to. Each drive is an
+    implicit force-limited damped spring:
+    Force or acceleration = stiffness * (targetPosition - position)
     + damping * (targetVelocity - velocity)'''
 )
 {
-    float physics:damping = 0 (
+    double physics:damping = 0 (
         displayName = "Damping"
         doc = "Damping of the drive. Unitless."
     )
-    float physics:maxForce = inf (
+    double physics:maxForce = inf (
         displayName = "Max Force"
-        doc = """Maximum force that can be applied to drive. Units: 
+        doc = """Maximum force that can be applied to drive. Units:
                 if linear drive:  mass*DIST_UNITS/time/time
                 if angular drive: mass*DIST_UNITS*DIST_UNITS/time/time
                 inf means not limited.  Must be non-negative."""
     )
-    float physics:stiffness = 0 (
+    double physics:stiffness = 0 (
         displayName = "Stiffness"
         doc = "Stiffness of the drive. Unitless."
     )
-    float physics:targetPosition = 0 (
+    double physics:targetPosition = 0 (
         displayName = "Target Position"
-        doc = """Target value for position. Units: 
+        doc = """Target value for position. Units:
         if linear drive: distance
         if angular drive: degrees."""
     )
-    float physics:targetVelocity = 0 (
+    double physics:targetVelocity = 0 (
         displayName = "Target Velocity"
-        doc = """Target value for velocity. Units: 
+        doc = """Target value for velocity. Units:
         if linear drive:  distance/time
         if angular drive: degrees/time."""
     )
     uniform token physics:type = "force" (
         allowedTokens = ["force", "acceleration"]
         displayName = "Type"
-        doc = """Drive spring is for the acceleration at the joint (rather 
+        doc = """Drive spring is for the acceleration at the joint (rather
         than the force)."""
     )
 }
 
 class "PhysicsArticulationRootAPI" (
-    doc = """PhysicsArticulationRootAPI can be applied to a scene graph node, 
-    and marks the subtree rooted here for inclusion in one or more reduced 
+    doc = """PhysicsArticulationRootAPI can be applied to a scene graph node,
+    and marks the subtree rooted here for inclusion in one or more reduced
     coordinate articulations. For floating articulations, this should be on
-    the root body.  For fixed articulations, this can be somewhere above the 
+    the root body.  For fixed articulations, this can be somewhere above the
     root joint, which is connected to the world."""
 )
 {
 }
-
