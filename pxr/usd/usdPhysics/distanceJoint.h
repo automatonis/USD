@@ -151,20 +151,20 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // MINDISTANCE 
+    // MINDISTANCE
     // --------------------------------------------------------------------- //
-    /// Minimum distance. If attribute is negative, the joint is not 
+    /// Minimum distance. If attribute is negative, the joint is not
     /// limited. Units: distance.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:minDistance = -1` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:minDistance = -1` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetMinDistanceAttr() const;
 
-    /// See GetMinDistanceAttr(), and also 
+    /// See GetMinDistanceAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -174,20 +174,20 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // MAXDISTANCE 
+    // MAXDISTANCE
     // --------------------------------------------------------------------- //
-    /// Maximum distance. If attribute is negative, the joint is not 
+    /// Maximum distance. If attribute is negative, the joint is not
     /// limited. Units: distance.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:maxDistance = -1` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:maxDistance = -1` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetMaxDistanceAttr() const;
 
-    /// See GetMaxDistanceAttr(), and also 
+    /// See GetMaxDistanceAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -197,11 +197,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

@@ -52,9 +52,9 @@ class SdfAssetPath;
 
 /// \class UsdPhysicsSphericalJoint
 ///
-/// Predefined spherical joint type (Removes linear degrees of 
+/// Predefined spherical joint type (Removes linear degrees of
 /// freedom, cone limit may restrict the motion in a given range.)  It allows
-/// two limit values, which when equal create a circular, else an elliptic 
+/// two limit values, which when equal create a circular, else an elliptic
 /// cone limit around the limit axis.
 ///
 /// For any described attribute \em Fallback \em Value or \em Allowed \em Values below
@@ -158,7 +158,7 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // AXIS 
+    // AXIS
     // --------------------------------------------------------------------- //
     /// Cone limit axis.
     ///
@@ -172,7 +172,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetAxisAttr() const;
 
-    /// See GetAxisAttr(), and also 
+    /// See GetAxisAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -182,21 +182,21 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // CONEANGLE0LIMIT 
+    // CONEANGLE0LIMIT
     // --------------------------------------------------------------------- //
-    /// Cone limit from the primary joint axis in the local0 frame 
-    /// toward the next axis. (Next axis of X is Y, and of Z is X.)  A 
+    /// Cone limit from the primary joint axis in the local0 frame
+    /// toward the next axis. (Next axis of X is Y, and of Z is X.)  A
     /// negative value means not limited. Units: degrees.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:coneAngle0Limit = -1` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:coneAngle0Limit = -1` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetConeAngle0LimitAttr() const;
 
-    /// See GetConeAngle0LimitAttr(), and also 
+    /// See GetConeAngle0LimitAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -206,21 +206,21 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // CONEANGLE1LIMIT 
+    // CONEANGLE1LIMIT
     // --------------------------------------------------------------------- //
-    /// Cone limit from the primary joint axis in the local0 frame 
-    /// toward the second to next axis.  A negative value means not limited. 
+    /// Cone limit from the primary joint axis in the local0 frame
+    /// toward the second to next axis.  A negative value means not limited.
     /// Units: degrees.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:coneAngle1Limit = -1` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:coneAngle1Limit = -1` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetConeAngle1LimitAttr() const;
 
-    /// See GetConeAngle1LimitAttr(), and also 
+    /// See GetConeAngle1LimitAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -230,11 +230,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

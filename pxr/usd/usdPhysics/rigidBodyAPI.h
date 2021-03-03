@@ -54,7 +54,7 @@ class SdfAssetPath;
 ///
 /// Applies physics body attributes to any UsdGeomXformable prim and
 /// marks that prim to be driven by a simulation. If a simulation is running
-/// it will update this prim's pose. All prims in the hierarchy below this 
+/// it will update this prim's pose. All prims in the hierarchy below this
 /// prim should move accordingly.
 ///
 class UsdPhysicsRigidBodyAPI : public UsdAPISchemaBase
@@ -108,21 +108,21 @@ public:
 
 
     /// Applies this <b>single-apply</b> API schema to the given \p prim.
-    /// This information is stored by adding "PhysicsRigidBodyAPI" to the 
+    /// This information is stored by adding "PhysicsRigidBodyAPI" to the
     /// token-valued, listOp metadata \em apiSchemas on the prim.
-    /// 
-    /// \return A valid UsdPhysicsRigidBodyAPI object is returned upon success. 
-    /// An invalid (or empty) UsdPhysicsRigidBodyAPI object is returned upon 
-    /// failure. See \ref UsdPrim::ApplyAPI() for conditions 
-    /// resulting in failure. 
-    /// 
+    ///
+    /// \return A valid UsdPhysicsRigidBodyAPI object is returned upon success.
+    /// An invalid (or empty) UsdPhysicsRigidBodyAPI object is returned upon
+    /// failure. See \ref UsdPrim::ApplyAPI() for conditions
+    /// resulting in failure.
+    ///
     /// \sa UsdPrim::GetAppliedSchemas()
     /// \sa UsdPrim::HasAPI()
     /// \sa UsdPrim::ApplyAPI()
     /// \sa UsdPrim::RemoveAPI()
     ///
     USDPHYSICS_API
-    static UsdPhysicsRigidBodyAPI 
+    static UsdPhysicsRigidBodyAPI
     Apply(const UsdPrim &prim);
 
 protected:
@@ -146,7 +146,7 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // RIGIDBODYENABLED 
+    // RIGIDBODYENABLED
     // --------------------------------------------------------------------- //
     /// Determines if this PhysicsRigidBodyAPI is enabled.
     ///
@@ -158,7 +158,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetRigidBodyEnabledAttr() const;
 
-    /// See GetRigidBodyEnabledAttr(), and also 
+    /// See GetRigidBodyEnabledAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -168,10 +168,10 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // KINEMATICENABLED 
+    // KINEMATICENABLED
     // --------------------------------------------------------------------- //
-    /// Determines whether the body is kinematic or not. A kinematic 
-    /// body is a body that is moved through animated poses or through 
+    /// Determines whether the body is kinematic or not. A kinematic
+    /// body is a body that is moved through animated poses or through
     /// user defined poses. The simulation still derives velocities for the
     /// kinematic body based on the external motion.
     ///
@@ -183,7 +183,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetKinematicEnabledAttr() const;
 
-    /// See GetKinematicEnabledAttr(), and also 
+    /// See GetKinematicEnabledAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -193,7 +193,7 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // STARTSASLEEP 
+    // STARTSASLEEP
     // --------------------------------------------------------------------- //
     /// Determines if the body is asleep when the simulation starts.
     ///
@@ -206,7 +206,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetStartsAsleepAttr() const;
 
-    /// See GetStartsAsleepAttr(), and also 
+    /// See GetStartsAsleepAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -216,20 +216,20 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // VELOCITY 
+    // VELOCITY
     // --------------------------------------------------------------------- //
-    /// Linear velocity in the same space as the node's xform. 
+    /// Linear velocity in the same space as the node's xform.
     /// Units: distance/time.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `vector3f physics:velocity = (0, 0, 0)` |
-    /// | C++ Type | GfVec3f |
+    /// | Declaration | `vector3d physics:velocity = (0, 0, 0)` |
+    /// | C++ Type | GfVec3d |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Vector3f |
     USDPHYSICS_API
     UsdAttribute GetVelocityAttr() const;
 
-    /// See GetVelocityAttr(), and also 
+    /// See GetVelocityAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -239,20 +239,20 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // ANGULARVELOCITY 
+    // ANGULARVELOCITY
     // --------------------------------------------------------------------- //
-    /// Angular velocity in the same space as the node's xform. 
+    /// Angular velocity in the same space as the node's xform.
     /// Units: degrees/time.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `vector3f physics:angularVelocity = (0, 0, 0)` |
-    /// | C++ Type | GfVec3f |
+    /// | Declaration | `vector3d physics:angularVelocity = (0, 0, 0)` |
+    /// | C++ Type | GfVec3d |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Vector3f |
     USDPHYSICS_API
     UsdAttribute GetAngularVelocityAttr() const;
 
-    /// See GetAngularVelocityAttr(), and also 
+    /// See GetAngularVelocityAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -262,27 +262,27 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // SIMULATIONOWNER 
+    // SIMULATIONOWNER
     // --------------------------------------------------------------------- //
-    /// Single PhysicsScene that will simulate this body.  By 
-    /// default this is the first PhysicsScene found in the stage using 
+    /// Single PhysicsScene that will simulate this body.  By
+    /// default this is the first PhysicsScene found in the stage using
     /// UsdStage::Traverse().
     ///
     USDPHYSICS_API
     UsdRelationship GetSimulationOwnerRel() const;
 
-    /// See GetSimulationOwnerRel(), and also 
+    /// See GetSimulationOwnerRel(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create
     USDPHYSICS_API
     UsdRelationship CreateSimulationOwnerRel() const;
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

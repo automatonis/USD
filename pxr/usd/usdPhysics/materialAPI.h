@@ -52,8 +52,8 @@ class SdfAssetPath;
 
 /// \class UsdPhysicsMaterialAPI
 ///
-/// Defines simulation material properties. All collisions that 
-/// have a material binding with purpose physics to this material 
+/// Defines simulation material properties. All collisions that
+/// have a material binding with purpose physics to this material
 /// will have their collision response defined through this material.
 ///
 class UsdPhysicsMaterialAPI : public UsdAPISchemaBase
@@ -107,21 +107,21 @@ public:
 
 
     /// Applies this <b>single-apply</b> API schema to the given \p prim.
-    /// This information is stored by adding "PhysicsMaterialAPI" to the 
+    /// This information is stored by adding "PhysicsMaterialAPI" to the
     /// token-valued, listOp metadata \em apiSchemas on the prim.
-    /// 
-    /// \return A valid UsdPhysicsMaterialAPI object is returned upon success. 
-    /// An invalid (or empty) UsdPhysicsMaterialAPI object is returned upon 
-    /// failure. See \ref UsdPrim::ApplyAPI() for conditions 
-    /// resulting in failure. 
-    /// 
+    ///
+    /// \return A valid UsdPhysicsMaterialAPI object is returned upon success.
+    /// An invalid (or empty) UsdPhysicsMaterialAPI object is returned upon
+    /// failure. See \ref UsdPrim::ApplyAPI() for conditions
+    /// resulting in failure.
+    ///
     /// \sa UsdPrim::GetAppliedSchemas()
     /// \sa UsdPrim::HasAPI()
     /// \sa UsdPrim::ApplyAPI()
     /// \sa UsdPrim::RemoveAPI()
     ///
     USDPHYSICS_API
-    static UsdPhysicsMaterialAPI 
+    static UsdPhysicsMaterialAPI
     Apply(const UsdPrim &prim);
 
 protected:
@@ -145,19 +145,19 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // DYNAMICFRICTION 
+    // DYNAMICFRICTION
     // --------------------------------------------------------------------- //
     /// Dynamic friction coefficient. Unitless.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:dynamicFriction = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:dynamicFriction = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetDynamicFrictionAttr() const;
 
-    /// See GetDynamicFrictionAttr(), and also 
+    /// See GetDynamicFrictionAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -167,19 +167,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // STATICFRICTION 
+    // STATICFRICTION
     // --------------------------------------------------------------------- //
     /// Static friction coefficient. Unitless.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:staticFriction = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:staticFriction = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetStaticFrictionAttr() const;
 
-    /// See GetStaticFrictionAttr(), and also 
+    /// See GetStaticFrictionAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -189,19 +189,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // RESTITUTION 
+    // RESTITUTION
     // --------------------------------------------------------------------- //
     /// Restitution coefficient. Unitless.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:restitution = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:restitution = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetRestitutionAttr() const;
 
-    /// See GetRestitutionAttr(), and also 
+    /// See GetRestitutionAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -211,22 +211,22 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // DENSITY 
+    // DENSITY
     // --------------------------------------------------------------------- //
     /// If non-zero, defines the density of the material. This can be
     /// used for body mass computation, see PhysicsMassAPI.
-    /// Note that if the density is 0.0 it is ignored. 
+    /// Note that if the density is 0.0 it is ignored.
     /// Units: mass/distance/distance/distance.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:density = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:density = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetDensityAttr() const;
 
-    /// See GetDensityAttr(), and also 
+    /// See GetDensityAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -236,11 +236,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

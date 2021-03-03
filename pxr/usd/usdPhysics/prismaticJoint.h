@@ -52,7 +52,7 @@ class SdfAssetPath;
 
 /// \class UsdPhysicsPrismaticJoint
 ///
-/// Predefined prismatic joint type (translation along prismatic 
+/// Predefined prismatic joint type (translation along prismatic
 /// joint axis is permitted.)
 ///
 /// For any described attribute \em Fallback \em Value or \em Allowed \em Values below
@@ -156,7 +156,7 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // AXIS 
+    // AXIS
     // --------------------------------------------------------------------- //
     /// Joint axis.
     ///
@@ -170,7 +170,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetAxisAttr() const;
 
-    /// See GetAxisAttr(), and also 
+    /// See GetAxisAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -180,20 +180,20 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // LOWERLIMIT 
+    // LOWERLIMIT
     // --------------------------------------------------------------------- //
-    /// Lower limit. Units: distance. -inf means not limited in 
+    /// Lower limit. Units: distance. -inf means not limited in
     /// negative direction.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:lowerLimit = -inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:lowerLimit = -inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetLowerLimitAttr() const;
 
-    /// See GetLowerLimitAttr(), and also 
+    /// See GetLowerLimitAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -203,20 +203,20 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // UPPERLIMIT 
+    // UPPERLIMIT
     // --------------------------------------------------------------------- //
-    /// Upper limit. Units: distance. inf means not limited in 
+    /// Upper limit. Units: distance. inf means not limited in
     /// positive direction.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:upperLimit = inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:upperLimit = inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetUpperLimitAttr() const;
 
-    /// See GetUpperLimitAttr(), and also 
+    /// See GetUpperLimitAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -226,11 +226,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

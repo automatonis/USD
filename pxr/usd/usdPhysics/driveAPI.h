@@ -53,12 +53,12 @@ class SdfAssetPath;
 /// \class UsdPhysicsDriveAPI
 ///
 /// The PhysicsDriveAPI when applied to any joint primitive will drive
-/// the joint towards a given target.  The PhysicsDriveAPI is a multipleApply 
-/// schema: drive can be set per axis "transX", "transY", "transZ", "rotX", 
-/// "rotY", "rotZ". Setting these as a multipleApply schema TfToken name will 
-/// define the degree of freedom the DriveAPI is applied to. Each drive is an 
-/// implicit force-limited damped spring: 
-/// Force or acceleration = stiffness * (targetPosition - position) 
+/// the joint towards a given target.  The PhysicsDriveAPI is a multipleApply
+/// schema: drive can be set per axis "transX", "transY", "transZ", "rotX",
+/// "rotY", "rotZ". Setting these as a multipleApply schema TfToken name will
+/// define the degree of freedom the DriveAPI is applied to. Each drive is an
+/// implicit force-limited damped spring:
+/// Force or acceleration = stiffness * (targetPosition - position)
 /// + damping * (targetVelocity - velocity)
 ///
 /// For any described attribute \em Fallback \em Value or \em Allowed \em Values below
@@ -153,26 +153,26 @@ public:
     static bool
     IsPhysicsDriveAPIPath(const SdfPath &path, TfToken *name);
 
-    /// Applies this <b>multiple-apply</b> API schema to the given \p prim 
-    /// along with the given instance name, \p name. 
-    /// 
-    /// This information is stored by adding "PhysicsDriveAPI:<i>name</i>" 
+    /// Applies this <b>multiple-apply</b> API schema to the given \p prim
+    /// along with the given instance name, \p name.
+    ///
+    /// This information is stored by adding "PhysicsDriveAPI:<i>name</i>"
     /// to the token-valued, listOp metadata \em apiSchemas on the prim.
-    /// For example, if \p name is 'instance1', the token 
+    /// For example, if \p name is 'instance1', the token
     /// 'PhysicsDriveAPI:instance1' is added to 'apiSchemas'.
-    /// 
-    /// \return A valid UsdPhysicsDriveAPI object is returned upon success. 
-    /// An invalid (or empty) UsdPhysicsDriveAPI object is returned upon 
-    /// failure. See \ref UsdPrim::ApplyAPI() for 
-    /// conditions resulting in failure. 
-    /// 
+    ///
+    /// \return A valid UsdPhysicsDriveAPI object is returned upon success.
+    /// An invalid (or empty) UsdPhysicsDriveAPI object is returned upon
+    /// failure. See \ref UsdPrim::ApplyAPI() for
+    /// conditions resulting in failure.
+    ///
     /// \sa UsdPrim::GetAppliedSchemas()
     /// \sa UsdPrim::HasAPI()
     /// \sa UsdPrim::ApplyAPI()
     /// \sa UsdPrim::RemoveAPI()
     ///
     USDPHYSICS_API
-    static UsdPhysicsDriveAPI 
+    static UsdPhysicsDriveAPI
     Apply(const UsdPrim &prim, const TfToken &name);
 
 protected:
@@ -196,9 +196,9 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // TYPE 
+    // TYPE
     // --------------------------------------------------------------------- //
-    /// Drive spring is for the acceleration at the joint (rather 
+    /// Drive spring is for the acceleration at the joint (rather
     /// than the force).
     ///
     /// | ||
@@ -211,7 +211,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetTypeAttr() const;
 
-    /// See GetTypeAttr(), and also 
+    /// See GetTypeAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -221,22 +221,22 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // MAXFORCE 
+    // MAXFORCE
     // --------------------------------------------------------------------- //
-    /// Maximum force that can be applied to drive. Units: 
+    /// Maximum force that can be applied to drive. Units:
     /// if linear drive:  mass*DIST_UNITS/time/time
     /// if angular drive: mass*DIST_UNITS*DIST_UNITS/time/time
     /// inf means not limited.  Must be non-negative.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:maxForce = inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:maxForce = inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetMaxForceAttr() const;
 
-    /// See GetMaxForceAttr(), and also 
+    /// See GetMaxForceAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -246,21 +246,21 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // TARGETPOSITION 
+    // TARGETPOSITION
     // --------------------------------------------------------------------- //
-    /// Target value for position. Units: 
+    /// Target value for position. Units:
     /// if linear drive: distance
     /// if angular drive: degrees.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:targetPosition = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:targetPosition = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetTargetPositionAttr() const;
 
-    /// See GetTargetPositionAttr(), and also 
+    /// See GetTargetPositionAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -270,21 +270,21 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // TARGETVELOCITY 
+    // TARGETVELOCITY
     // --------------------------------------------------------------------- //
-    /// Target value for velocity. Units: 
+    /// Target value for velocity. Units:
     /// if linear drive:  distance/time
     /// if angular drive: degrees/time.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:targetVelocity = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:targetVelocity = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetTargetVelocityAttr() const;
 
-    /// See GetTargetVelocityAttr(), and also 
+    /// See GetTargetVelocityAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -294,19 +294,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // DAMPING 
+    // DAMPING
     // --------------------------------------------------------------------- //
     /// Damping of the drive. Unitless.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:damping = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:damping = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetDampingAttr() const;
 
-    /// See GetDampingAttr(), and also 
+    /// See GetDampingAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -316,19 +316,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // STIFFNESS 
+    // STIFFNESS
     // --------------------------------------------------------------------- //
     /// Stiffness of the drive. Unitless.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:stiffness = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:stiffness = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetStiffnessAttr() const;
 
-    /// See GetStiffnessAttr(), and also 
+    /// See GetStiffnessAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -338,11 +338,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

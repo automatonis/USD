@@ -53,11 +53,11 @@ class SdfAssetPath;
 /// \class UsdPhysicsLimitAPI
 ///
 /// The PhysicsLimitAPI can be applied to a PhysicsJoint and will
-/// restrict the movement along an axis. PhysicsLimitAPI is a multipleApply 
-/// schema: The PhysicsJoint can be restricted along "transX", "transY", 
-/// "transZ", "rotX", "rotY", "rotZ", "distance". Setting these as a 
+/// restrict the movement along an axis. PhysicsLimitAPI is a multipleApply
+/// schema: The PhysicsJoint can be restricted along "transX", "transY",
+/// "transZ", "rotX", "rotY", "rotZ", "distance". Setting these as a
 /// multipleApply schema TfToken name will define the degree of freedom the
-/// PhysicsLimitAPI is applied to. Note that if the low limit is higher than 
+/// PhysicsLimitAPI is applied to. Note that if the low limit is higher than
 /// the high limit, motion along this axis is considered locked.
 ///
 class UsdPhysicsLimitAPI : public UsdAPISchemaBase
@@ -147,26 +147,26 @@ public:
     static bool
     IsPhysicsLimitAPIPath(const SdfPath &path, TfToken *name);
 
-    /// Applies this <b>multiple-apply</b> API schema to the given \p prim 
-    /// along with the given instance name, \p name. 
-    /// 
-    /// This information is stored by adding "PhysicsLimitAPI:<i>name</i>" 
+    /// Applies this <b>multiple-apply</b> API schema to the given \p prim
+    /// along with the given instance name, \p name.
+    ///
+    /// This information is stored by adding "PhysicsLimitAPI:<i>name</i>"
     /// to the token-valued, listOp metadata \em apiSchemas on the prim.
-    /// For example, if \p name is 'instance1', the token 
+    /// For example, if \p name is 'instance1', the token
     /// 'PhysicsLimitAPI:instance1' is added to 'apiSchemas'.
-    /// 
-    /// \return A valid UsdPhysicsLimitAPI object is returned upon success. 
-    /// An invalid (or empty) UsdPhysicsLimitAPI object is returned upon 
-    /// failure. See \ref UsdPrim::ApplyAPI() for 
-    /// conditions resulting in failure. 
-    /// 
+    ///
+    /// \return A valid UsdPhysicsLimitAPI object is returned upon success.
+    /// An invalid (or empty) UsdPhysicsLimitAPI object is returned upon
+    /// failure. See \ref UsdPrim::ApplyAPI() for
+    /// conditions resulting in failure.
+    ///
     /// \sa UsdPrim::GetAppliedSchemas()
     /// \sa UsdPrim::HasAPI()
     /// \sa UsdPrim::ApplyAPI()
     /// \sa UsdPrim::RemoveAPI()
     ///
     USDPHYSICS_API
-    static UsdPhysicsLimitAPI 
+    static UsdPhysicsLimitAPI
     Apply(const UsdPrim &prim, const TfToken &name);
 
 protected:
@@ -190,20 +190,20 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // LOW 
+    // LOW
     // --------------------------------------------------------------------- //
     /// Lower limit. Units: degrees or distance depending on trans or
     /// rot axis applied to. -inf means not limited in negative direction.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:low = -inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:low = -inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetLowAttr() const;
 
-    /// See GetLowAttr(), and also 
+    /// See GetLowAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -213,20 +213,20 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // HIGH 
+    // HIGH
     // --------------------------------------------------------------------- //
-    /// Upper limit.  Units: degrees or distance depending on trans or 
+    /// Upper limit.  Units: degrees or distance depending on trans or
     /// rot axis applied to. inf means not limited in positive direction.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:high = inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:high = inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetHighAttr() const;
 
-    /// See GetHighAttr(), and also 
+    /// See GetHighAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -236,11 +236,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

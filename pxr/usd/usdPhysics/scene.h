@@ -150,21 +150,21 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // GRAVITYDIRECTION 
+    // GRAVITYDIRECTION
     // --------------------------------------------------------------------- //
     /// Gravity direction vector in simulation word space. Will be
-    /// normalized before use. A zero vector is a request to use the negative 
+    /// normalized before use. A zero vector is a request to use the negative
     /// upAxis. Unitless.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `vector3f physics:gravityDirection = (0, 0, 0)` |
-    /// | C++ Type | GfVec3f |
+    /// | Declaration | `vector3d physics:gravityDirection = (0, 0, 0)` |
+    /// | C++ Type | GfVec3d |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Vector3f |
     USDPHYSICS_API
     UsdAttribute GetGravityDirectionAttr() const;
 
-    /// See GetGravityDirectionAttr(), and also 
+    /// See GetGravityDirectionAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -174,22 +174,22 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // GRAVITYMAGNITUDE 
+    // GRAVITYMAGNITUDE
     // --------------------------------------------------------------------- //
-    /// Gravity acceleration magnitude in simulation word space. 
-    /// A negative value is a request to use a value equivalent to earth 
-    /// gravity regardless of the metersPerUnit scaling used by this scene. 
+    /// Gravity acceleration magnitude in simulation word space.
+    /// A negative value is a request to use a value equivalent to earth
+    /// gravity regardless of the metersPerUnit scaling used by this scene.
     /// Units: distance/time/time.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:gravityMagnitude = -inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:gravityMagnitude = -inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetGravityMagnitudeAttr() const;
 
-    /// See GetGravityMagnitudeAttr(), and also 
+    /// See GetGravityMagnitudeAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -199,11 +199,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

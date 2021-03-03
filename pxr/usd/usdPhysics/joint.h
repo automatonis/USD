@@ -52,12 +52,12 @@ class SdfAssetPath;
 
 /// \class UsdPhysicsJoint
 ///
-/// A joint constrains the movement of rigid bodies. Joint can be 
+/// A joint constrains the movement of rigid bodies. Joint can be
 /// created between two rigid bodies or between one rigid body and world.
-/// By default joint primitive defines a D6 joint where all degrees of 
+/// By default joint primitive defines a D6 joint where all degrees of
 /// freedom are free. Three linear and three angular degrees of freedom.
 /// Note that default behavior is to disable collision between jointed bodies.
-/// 
+///
 ///
 class UsdPhysicsJoint : public UsdGeomImageable
 {
@@ -155,19 +155,19 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // LOCALPOS0 
+    // LOCALPOS0
     // --------------------------------------------------------------------- //
     /// Relative position of the joint frame to body0's frame.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `point3f physics:localPos0 = (0, 0, 0)` |
-    /// | C++ Type | GfVec3f |
+    /// | Declaration | `point3d physics:localPos0 = (0, 0, 0)` |
+    /// | C++ Type | GfVec3d |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Point3f |
     USDPHYSICS_API
     UsdAttribute GetLocalPos0Attr() const;
 
-    /// See GetLocalPos0Attr(), and also 
+    /// See GetLocalPos0Attr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -177,19 +177,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // LOCALROT0 
+    // LOCALROT0
     // --------------------------------------------------------------------- //
     /// Relative orientation of the joint frame to body0's frame.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `quatf physics:localRot0 = (1, 0, 0, 0)` |
-    /// | C++ Type | GfQuatf |
+    /// | Declaration | `quatd physics:localRot0 = (1, 0, 0, 0)` |
+    /// | C++ Type | GfQuatd |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Quatf |
     USDPHYSICS_API
     UsdAttribute GetLocalRot0Attr() const;
 
-    /// See GetLocalRot0Attr(), and also 
+    /// See GetLocalRot0Attr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -199,19 +199,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // LOCALPOS1 
+    // LOCALPOS1
     // --------------------------------------------------------------------- //
     /// Relative position of the joint frame to body1's frame.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `point3f physics:localPos1 = (0, 0, 0)` |
-    /// | C++ Type | GfVec3f |
+    /// | Declaration | `point3d physics:localPos1 = (0, 0, 0)` |
+    /// | C++ Type | GfVec3d |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Point3f |
     USDPHYSICS_API
     UsdAttribute GetLocalPos1Attr() const;
 
-    /// See GetLocalPos1Attr(), and also 
+    /// See GetLocalPos1Attr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -221,19 +221,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // LOCALROT1 
+    // LOCALROT1
     // --------------------------------------------------------------------- //
     /// Relative orientation of the joint frame to body1's frame.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `quatf physics:localRot1 = (1, 0, 0, 0)` |
-    /// | C++ Type | GfQuatf |
+    /// | Declaration | `quatd physics:localRot1 = (1, 0, 0, 0)` |
+    /// | C++ Type | GfQuatd |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Quatf |
     USDPHYSICS_API
     UsdAttribute GetLocalRot1Attr() const;
 
-    /// See GetLocalRot1Attr(), and also 
+    /// See GetLocalRot1Attr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -243,7 +243,7 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // JOINTENABLED 
+    // JOINTENABLED
     // --------------------------------------------------------------------- //
     /// Determines if the joint is enabled.
     ///
@@ -255,7 +255,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetJointEnabledAttr() const;
 
-    /// See GetJointEnabledAttr(), and also 
+    /// See GetJointEnabledAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -265,7 +265,7 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // COLLISIONENABLED 
+    // COLLISIONENABLED
     // --------------------------------------------------------------------- //
     /// Determines if the jointed bodies should collide or not.
     ///
@@ -277,7 +277,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetCollisionEnabledAttr() const;
 
-    /// See GetCollisionEnabledAttr(), and also 
+    /// See GetCollisionEnabledAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -287,7 +287,7 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // EXCLUDEFROMARTICULATION 
+    // EXCLUDEFROMARTICULATION
     // --------------------------------------------------------------------- //
     /// Determines if the joint can be included in an Articulation.
     ///
@@ -300,7 +300,7 @@ public:
     USDPHYSICS_API
     UsdAttribute GetExcludeFromArticulationAttr() const;
 
-    /// See GetExcludeFromArticulationAttr(), and also 
+    /// See GetExcludeFromArticulationAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -310,21 +310,21 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // BREAKFORCE 
+    // BREAKFORCE
     // --------------------------------------------------------------------- //
     /// Joint break force. If set, joint is to break when this force
-    /// limit is reached. (Used for linear dofs.) 
+    /// limit is reached. (Used for linear dofs.)
     /// Units: mass * distance / time / time
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:breakForce = inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:breakForce = inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetBreakForceAttr() const;
 
-    /// See GetBreakForceAttr(), and also 
+    /// See GetBreakForceAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -334,21 +334,21 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // BREAKTORQUE 
+    // BREAKTORQUE
     // --------------------------------------------------------------------- //
     /// Joint break torque. If set, joint is to break when this torque
-    /// limit is reached. (Used for angular dofs.) 
+    /// limit is reached. (Used for angular dofs.)
     /// Units: mass * distance * distance / time / time
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:breakTorque = inf` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:breakTorque = inf` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetBreakTorqueAttr() const;
 
-    /// See GetBreakTorqueAttr(), and also 
+    /// See GetBreakTorqueAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -358,41 +358,41 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // BODY0 
+    // BODY0
     // --------------------------------------------------------------------- //
-    /// Relationship to first rigid body (or empty string if to 
+    /// Relationship to first rigid body (or empty string if to
     /// world).
     ///
     USDPHYSICS_API
     UsdRelationship GetBody0Rel() const;
 
-    /// See GetBody0Rel(), and also 
+    /// See GetBody0Rel(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create
     USDPHYSICS_API
     UsdRelationship CreateBody0Rel() const;
 
 public:
     // --------------------------------------------------------------------- //
-    // BODY1 
+    // BODY1
     // --------------------------------------------------------------------- //
-    /// Relationship to second rigid body (or empty string if to 
+    /// Relationship to second rigid body (or empty string if to
     /// world).
     ///
     USDPHYSICS_API
     UsdRelationship GetBody1Rel() const;
 
-    /// See GetBody1Rel(), and also 
+    /// See GetBody1Rel(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create
     USDPHYSICS_API
     UsdRelationship CreateBody1Rel() const;
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //

@@ -52,7 +52,7 @@ class SdfAssetPath;
 
 /// \class UsdPhysicsMassAPI
 ///
-/// Defines explicit mass properties (mass, density, inertia etc.).        
+/// Defines explicit mass properties (mass, density, inertia etc.).
 /// MassAPI can be applied to any object that has a PhysicsCollisionAPI or
 /// a PhysicsRigidBodyAPI.
 ///
@@ -107,21 +107,21 @@ public:
 
 
     /// Applies this <b>single-apply</b> API schema to the given \p prim.
-    /// This information is stored by adding "PhysicsMassAPI" to the 
+    /// This information is stored by adding "PhysicsMassAPI" to the
     /// token-valued, listOp metadata \em apiSchemas on the prim.
-    /// 
-    /// \return A valid UsdPhysicsMassAPI object is returned upon success. 
-    /// An invalid (or empty) UsdPhysicsMassAPI object is returned upon 
-    /// failure. See \ref UsdPrim::ApplyAPI() for conditions 
-    /// resulting in failure. 
-    /// 
+    ///
+    /// \return A valid UsdPhysicsMassAPI object is returned upon success.
+    /// An invalid (or empty) UsdPhysicsMassAPI object is returned upon
+    /// failure. See \ref UsdPrim::ApplyAPI() for conditions
+    /// resulting in failure.
+    ///
     /// \sa UsdPrim::GetAppliedSchemas()
     /// \sa UsdPrim::HasAPI()
     /// \sa UsdPrim::ApplyAPI()
     /// \sa UsdPrim::RemoveAPI()
     ///
     USDPHYSICS_API
-    static UsdPhysicsMassAPI 
+    static UsdPhysicsMassAPI
     Apply(const UsdPrim &prim);
 
 protected:
@@ -145,27 +145,27 @@ private:
 
 public:
     // --------------------------------------------------------------------- //
-    // MASS 
+    // MASS
     // --------------------------------------------------------------------- //
     /// If non-zero, directly specifies the mass of the object.
     /// Note that any child prim can also have a mass when they apply massAPI.
     /// In this case, the precedence rule is 'parent mass overrides the
-    /// child's'. This may come as counter-intuitive, but mass is a computed 
-    /// quantity and in general not accumulative. For example, if a parent 
-    /// has mass of 10, and one of two children has mass of 20, allowing 
-    /// child's mass to override its parent results in a mass of -10 for the 
+    /// child's'. This may come as counter-intuitive, but mass is a computed
+    /// quantity and in general not accumulative. For example, if a parent
+    /// has mass of 10, and one of two children has mass of 20, allowing
+    /// child's mass to override its parent results in a mass of -10 for the
     /// other child. Note if mass is 0.0 it is ignored. Units: mass.
-    /// 
+    ///
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:mass = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:mass = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetMassAttr() const;
 
-    /// See GetMassAttr(), and also 
+    /// See GetMassAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -175,16 +175,16 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // DENSITY 
+    // DENSITY
     // --------------------------------------------------------------------- //
     /// If non-zero, specifies the density of the object.
-    /// In the context of rigid body physics, density indirectly results in 
-    /// setting mass via (mass = density x volume of the object). How the 
+    /// In the context of rigid body physics, density indirectly results in
+    /// setting mass via (mass = density x volume of the object). How the
     /// volume is computed is up to implementation of the physics system.
     /// It is generally computed from the collision approximation rather than
-    /// the graphical mesh. In the case where both density and mass are 
-    /// specified for the same object, mass has precedence over density. 
-    /// Unlike mass, child's prim's density overrides parent prim's density 
+    /// the graphical mesh. In the case where both density and mass are
+    /// specified for the same object, mass has precedence over density.
+    /// Unlike mass, child's prim's density overrides parent prim's density
     /// as it is accumulative. Note that density of a collisionAPI can be also
     /// alternatively set through a pPhysicsMaterialAPI rel. The material density
     /// has the weakest precedence in density definition. Note if density is
@@ -192,13 +192,13 @@ public:
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float physics:density = 0` |
-    /// | C++ Type | float |
+    /// | Declaration | `double physics:density = 0` |
+    /// | C++ Type | double |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float |
     USDPHYSICS_API
     UsdAttribute GetDensityAttr() const;
 
-    /// See GetDensityAttr(), and also 
+    /// See GetDensityAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -208,19 +208,19 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // CENTEROFMASS 
+    // CENTEROFMASS
     // --------------------------------------------------------------------- //
     /// Center of mass in the prim's local space. Units: distance.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `point3f physics:centerOfMass = (0, 0, 0)` |
-    /// | C++ Type | GfVec3f |
+    /// | Declaration | `point3d physics:centerOfMass = (0, 0, 0)` |
+    /// | C++ Type | GfVec3d |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Point3f |
     USDPHYSICS_API
     UsdAttribute GetCenterOfMassAttr() const;
 
-    /// See GetCenterOfMassAttr(), and also 
+    /// See GetCenterOfMassAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -230,21 +230,21 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // DIAGONALINERTIA 
+    // DIAGONALINERTIA
     // --------------------------------------------------------------------- //
-    /// If non-zero, specifies diagonalized inertia tensor along the 
-    /// principal axes. Note if diagonalInertial is (0.0, 0.0, 0.0) it is 
+    /// If non-zero, specifies diagonalized inertia tensor along the
+    /// principal axes. Note if diagonalInertial is (0.0, 0.0, 0.0) it is
     /// ignored. Units: mass*distance*distance.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `float3 physics:diagonalInertia = (0, 0, 0)` |
-    /// | C++ Type | GfVec3f |
+    /// | Declaration | `double3 physics:diagonalInertia = (0, 0, 0)` |
+    /// | C++ Type | GfVec3d |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Float3 |
     USDPHYSICS_API
     UsdAttribute GetDiagonalInertiaAttr() const;
 
-    /// See GetDiagonalInertiaAttr(), and also 
+    /// See GetDiagonalInertiaAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -254,20 +254,20 @@ public:
 
 public:
     // --------------------------------------------------------------------- //
-    // PRINCIPALAXES 
+    // PRINCIPALAXES
     // --------------------------------------------------------------------- //
-    /// Orientation of the inertia tensor's principal axes in the 
+    /// Orientation of the inertia tensor's principal axes in the
     /// prim's local space.
     ///
     /// | ||
     /// | -- | -- |
-    /// | Declaration | `quatf physics:principalAxes = (1, 0, 0, 0)` |
-    /// | C++ Type | GfQuatf |
+    /// | Declaration | `quatd physics:principalAxes = (1, 0, 0, 0)` |
+    /// | C++ Type | GfQuatd |
     /// | \ref Usd_Datatypes "Usd Type" | SdfValueTypeNames->Quatf |
     USDPHYSICS_API
     UsdAttribute GetPrincipalAxesAttr() const;
 
-    /// See GetPrincipalAxesAttr(), and also 
+    /// See GetPrincipalAxesAttr(), and also
     /// \ref Usd_Create_Or_Get_Property for when to use Get vs Create.
     /// If specified, author \p defaultValue as the attribute's default,
     /// sparsely (when it makes sense to do so) if \p writeSparsely is \c true -
@@ -277,11 +277,11 @@ public:
 
 public:
     // ===================================================================== //
-    // Feel free to add custom code below this line, it will be preserved by 
-    // the code generator. 
+    // Feel free to add custom code below this line, it will be preserved by
+    // the code generator.
     //
-    // Just remember to: 
-    //  - Close the class declaration with }; 
+    // Just remember to:
+    //  - Close the class declaration with };
     //  - Close the namespace with PXR_NAMESPACE_CLOSE_SCOPE
     //  - Close the include guard with #endif
     // ===================================================================== //
